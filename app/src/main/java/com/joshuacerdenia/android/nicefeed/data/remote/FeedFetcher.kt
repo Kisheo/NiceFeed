@@ -49,7 +49,11 @@ class FeedFetcher {
             return FeedWithEntries(feed, entries)
         }
     }
-
+//TODO here is the final fetcher for the feed
+    /**The feed is originally fetched from here
+     *
+     *
+     * **/
     suspend fun request(url: String) {
         try {
             val feedWithEntries = withContext(Dispatchers.IO) {

@@ -21,6 +21,7 @@ abstract class FeedAddingViewModel: ViewModel() {
     var subscriptionLimitNoticeEnabled = false
     var lastInputUrl = ""
 
+    //TODO URL STILL HERE in requestFeed function.
     fun requestFeed(url: String, backup: String? = null) {
         onFeedRequested()
         viewModelScope.launch {
