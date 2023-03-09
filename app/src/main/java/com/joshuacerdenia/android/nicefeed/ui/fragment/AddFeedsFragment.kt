@@ -88,15 +88,15 @@ class AddFeedsFragment: FeedAddingFragment(),
         super.onViewCreated(view, savedInstanceState)
         resultManager = RequestResultManager(viewModel, linearLayout, R.string.failed_to_get_feed)
 
-        viewModel.feedIdsWithCategoriesLiveData.observe(viewLifecycleOwner, { data ->
+        viewModel.feedIdsWithCategoriesLiveData.observe(viewLifecycleOwner) { data ->
             viewModel.onFeedDataRetrieved(data)
-        })
+        }
 
-        viewModel.topicBlocksLiveData.observe(viewLifecycleOwner, { topics ->
+        viewModel.topicBlocksLiveData.observe(viewLifecycleOwner) { topics ->
             adapter.submitList(topics.toMutableList())
-        })
+        }
 
-        viewModel.feedRequestLiveData.observe(viewLifecycleOwner, { feedWithEntries ->
+        viewModel.feedRequestLiveData.observe(viewLifecycleOwner) { feedWithEntries ->
             // A little delay to prevent resulting snackbar from jumping:
             Handler().postDelayed({ resultManager?.submitData(feedWithEntries) }, 250)
             if (viewModel.isActiveRequest) {
@@ -105,7 +105,7 @@ class AddFeedsFragment: FeedAddingFragment(),
                     viewModel.isActiveRequest = false
                 }
             }
-        })
+        }
     }
 
     override fun onStart() {
@@ -142,7 +142,7 @@ class AddFeedsFragment: FeedAddingFragment(),
             viewModel.requestFeed("https://$link", "http://$link")
         }
     }
-
+//TODO inspect This Fragment for adding URL To.
     override fun onRequestDismissed() {
         // Wait for dialog to close fully to prevent snackbar from jumping
         Handler().postDelayed({ resultManager?.onRequestDismissed() }, 250)

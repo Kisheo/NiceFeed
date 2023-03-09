@@ -83,7 +83,7 @@ class InputUrlFragment : BottomSheetDialogFragment() {
         super.onCancel(dialog)
         if (progressBar.isVisible()) callbacks?.onRequestDismissed()
     }
-
+//TODO input URL Here
     companion object {
 
         const val TAG = "InputUrlFragment"
